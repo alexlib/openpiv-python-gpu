@@ -137,7 +137,7 @@ def prepare_mask_on_grid(x, y, mask_coords):
         grid of points of the mask, of the shape of x
     """
     xymask = points_in_poly(np.c_[y.flatten(), x.flatten()], mask_coords)
-    return xymask.reshape(x.shape).astype(np.int)
+    return xymask.reshape(x.shape).astype(np.int64)
 
 
 def normalize_array(array, axis = None):
