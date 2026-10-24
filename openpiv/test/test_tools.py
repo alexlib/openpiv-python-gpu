@@ -3,6 +3,7 @@ from openpiv.pyprocess import extended_search_area_piv, get_coordinates
 import pathlib
 import numpy as np
 import matplotlib.pyplot as plt
+import pytest
 from matplotlib.testing import compare, decorators
 
 _file_a = pathlib.Path(__file__).parent / '../data/test1/exp1_001_a.bmp'
@@ -41,5 +42,8 @@ def test_display_vector_field(file_a=_file_a, file_b=_file_b, test_file=_test_fi
     display_vector_field('tmp.txt', on_img=True, image_name=file_a, ax=ax)
     decorators.remove_ticks_and_titles(fig)
     fig.savefig('./tmp.png')
+    plt.close(fig)
+    if not test_file.exists():  # baseline image is not committed
+        pytest.skip('baseline image %s missing' % test_file)
     res = compare.compare_images('./tmp.png', test_file, 0.001)
     assert res is None
