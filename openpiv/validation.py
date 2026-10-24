@@ -18,6 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 
+import warnings
+
 import numpy as np
 from scipy.ndimage import generic_filter
 import matplotlib.pyplot as plt
@@ -62,7 +64,7 @@ def global_val(u, v, u_thresholds, v_thresholds):
 
     """
 
-    np.warnings.filterwarnings("ignore")
+    warnings.filterwarnings("ignore")
 
     ind = np.logical_or(
         np.logical_or(u < u_thresholds[0], u > u_thresholds[1]),
